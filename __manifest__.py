@@ -1,34 +1,18 @@
-# -*- coding: utf-8 -*-
 {
-    'name':        "Library Management",
-
-    'summary':
-                   """
-                   Library management
-                   """,
-
-    'description': """
-        Manage a Library: customers, books, etc.... 
-    """,
-
-    'author':      "Odoo",
-    'website':     "http://www.odoo.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category':    'Library',
-    'version':     '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends':     ['base'],
-
-    # always loaded
-    'data':        [
-        "security/ir.model.access.csv",
-        "data/library_data.xml",
+    'name':'Cask Tracking',
+    'description':'Keep track of the state and location of your cask and kegs',
+    'author':'James Carr-Saunders',
+    'website':'kodoo.co.uk',
+    'license':'LGPL-3',
+    'category':'Operations',
+    'depends':['base','product','stock'],
+    'application':True,
+    'installable': True,
+    'data': [
+        'security/cask_security.xml',
+        'security/ir.model.access.csv',
+        'views/res_config_settings_views.xml',
+        'views/cask_menu.xml',
+        'views/cask_masterdata_views.xml',
     ],
-    # only loaded in demonstration mode
-    'demo':        [],
-    'license': 'AGPL-3',
 }

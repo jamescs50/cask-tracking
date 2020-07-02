@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Cask Tracking"
+        id="cask_tracking_root"
+        web_icon="cask_tracking,static/description/icon.png"
+        sequence="50"/>
+        
+    <menuitem id="cask_tracking_menu_masterdata" name="Master Data"
+        parent="cask_tracking_root" sequence="20" />
+
+    
+    <act_window id="action_cask_types"
+        name="Cask Types"
+        res_model="cask.type"
+        view_mode="tree,form"
+    />
+    <menuitem id="menu_cask_types" name="Cask Types"
+        parent="cask_tracking_menu_masterdata"         
+        action = "action_cask_types"
+        sequence="20" />
+
+
+</odoo>

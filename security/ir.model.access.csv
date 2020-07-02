@@ -1,1 +1,5 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cask_type_manager,Cask Type Manager,model_cask_type,group_cask_manager,1,1,1,1
+access_cask_cask_manager,Cask Cask Manager,model_cask_cask,group_cask_manager,1,1,1,1
+access_cask_type_user,Cask Type User,model_cask_type,group_cask_user,1,0,0,0
+access_cask_cask_user,Cask Cask User,model_cask_cask,group_cask_user,1,0,0,0

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cask_type_tree_view" model="ir.ui.view">
+            <field name="name">Cask types List</field>
+            <field name="model">cask.type</field>
+            <field name="arch" type="xml">
+                <tree string="Cask Types">
+                    <field name="name"/>
+                    <field name="capacity"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cask_type_form_view" model="ir.ui.view">
+            <field name="name">Cask Type</field>
+            <field name="model">cask.type</field>
+            <field name="arch" type="xml">
+                <form string="Cask Type">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="capacity" digits="[12,2]"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
