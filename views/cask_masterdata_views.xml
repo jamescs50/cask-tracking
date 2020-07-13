@@ -12,16 +12,60 @@
             </field>
         </record>
 
+
+        <act_window
+            id="act_view_cask_cask"
+            name="Casks"
+            view_mode='tree,form'
+            view_id='cask_cask_tree_view'
+            domain="[('cask_type','=', active_id)]"
+            context="{'default_cask_type': active_id}"
+            res_model="cask.cask"/>
+
         <record id="cask_type_form_view" model="ir.ui.view">
             <field name="name">Cask Type</field>
             <field name="model">cask.type</field>
             <field name="arch" type="xml">
                 <form string="Cask Type">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" string="casks" type="action" name="%(act_view_cask_cask)d"
+                                icon="fa-list-ul" widget="statinfo"/>
+                        </div>
                         <group>
                             <group>
                                 <field name="name"/>
                                 <field name="capacity" digits="[12,2]"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cask_cask_tree_view" model="ir.ui.view">
+            <field name="name">Casks List</field>
+            <field name="model">cask.cask</field>
+            <field name="arch" type="xml">
+                <tree string="Casks">
+                    <field name="name"/>
+                    <field name="alt_name"/>
+                    <field name="cask_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cask_cask_form_view" model="ir.ui.view">
+            <field name="name">Cask</field>
+            <field name="model">cask.cask</field>
+            <field name="arch" type="xml">
+                <form string="Cask">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="alt_name"/>
+                                <field name="cask_type"/>
                             </group>
                         </group>
                     </sheet>

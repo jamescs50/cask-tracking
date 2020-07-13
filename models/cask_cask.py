@@ -8,6 +8,7 @@ class cask_type(models.Model):
 
     name = fields.Text('Description', index=True, required=True)
     capacity = fields.Float('Capacity (Litres)')
+    cask_ids = fields.One2many('cask.cask','cask_type', string='Casks')
 
 class cask_cask(models.Model):
     _name = 'cask.cask'

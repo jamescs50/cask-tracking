@@ -20,5 +20,13 @@
         action = "action_cask_types"
         sequence="20" />
 
-
+    <act_window id="action_cask_casks"
+        name="Casks"
+        res_model="cask.cask"
+        view_mode="tree,form"
+    />
+    <menuitem id="menu_cask_casks" name="Casks"
+        parent="cask_tracking_menu_masterdata"         
+        action = "action_cask_casks"
+        sequence="25" />
 </odoo>
