@@ -7,6 +7,7 @@ full = filled with beer - ready for resale
 dirty = Empty - requires cleaning before refilling
 waste = full or part full of spoiled product. Product must be disposed before cask can be reused.
 damaged = cask is damaged and cannot be reused. 
+missing = location (and state) of cask is unknown.
 '''
 
 class cask_move(models.Model):
@@ -14,14 +15,27 @@ class cask_move(models.Model):
     _description = 'Cask Movement'
 
     name = fields.Text('Description', index=True, required=True)
-    date = fields.Datetime(
-        'Date', default=fields.Datetime.now, index=True, required=True,
-        readonly= True,compute='_compute_move',store=True)
+    cask_id = fields.Many2one('cask.cask','Cask')
     state = fields.Selection([
         ('empty','Empty'),('full','Full')
         ,('out','on loan')
         ,('dirty','Dirty'),('waste','Spoiled Product')
-        ,('damaged','Damaged')],
-        string='Status',default='dirty')
+        ,('damaged','Damaged'),('missing','Missing')],
+        string='Status')
     product_id = fields.Many2one('product.template','Contents',domain="[('type', '!=', 'service'))")
     customer_id = fields.Many2one('res.partner','Customer')
+    next_create_date = fields.Date('Next State Date',compute='_compute_next_create_date',readonly=True)
+
+    @api.depends('name')
+    def _compute_next_create_date(self):
+        self.flush()
+        for cm in self:
+            #query = """select create_date from cask_move 
+            #    where cask_id = {0} and id > {1} 
+            #    order by id limit 1""".format(cm.cask_id.id,cm.id)
+            #self._cr.execute(query)
+            #cm.next_create_date = self._cr.fetchall()
+            nextcm = self.env['cask.move'].search([('id','>',cm.id),
+                ('cask_id','=',cm.cask_id.id)],limit=1,order='id')
+            cm.next_create_date = nextcm.create_date
+            

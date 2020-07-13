@@ -29,7 +29,7 @@
                 <form string="Cask Type">
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" string="casks" type="action" name="%(act_view_cask_cask)d"
+                            <button class="oe_stat_button" string="Casks" type="action" name="%(act_view_cask_cask)d"
                                 icon="fa-list-ul" widget="statinfo"/>
                         </div>
                         <group>
@@ -55,12 +55,29 @@
             </field>
         </record>
 
+        <act_window
+            id="act_view_cask_move"
+            name="Cask Movements"
+            view_mode='tree'
+            view_id='cask_move_tree_view'
+            domain="[('cask_id','=', active_id)]"
+            context="{'default_cask_id': active_id}"
+            res_model="cask.move"/>
+
         <record id="cask_cask_form_view" model="ir.ui.view">
             <field name="name">Cask</field>
             <field name="model">cask.cask</field>
             <field name="arch" type="xml">
                 <form string="Cask">
+                    <header>
+                        <button name="status2emptybutton" type="object" string ="-> Empty"/>
+                    </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" string="Tracability" type="action" name="%(act_view_cask_move)d"
+                                icon="fa-exchange" widget="statinfo"/>
+                        </div>
+
                         <group>
                             <group>
                                 <field name="name"/>
@@ -68,8 +85,30 @@
                                 <field name="cask_type"/>
                             </group>
                         </group>
+                        <!-- mail mixin fields -->
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="activity_ids" widget="mail_activity"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record id="cask_move_tree_view" model="ir.ui.view">
+            <field name="name">Casks Moves</field>
+            <field name="model">cask.move</field>
+            <field name="arch" type="xml">
+                <tree string="Cask Moves">
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="next_create_date"/>
+                    <field name="cask_id"/>
+                    <field name="product_id"/>
+                    <field name="cask_id"/>
+                </tree>
             </field>
         </record>
     </data>
