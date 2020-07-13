@@ -36,6 +36,8 @@ class cask_cask(models.Model):
         ,('dirty','Dirty'),('waste','Spoiled Product')
         ,('damaged','Damaged'),('missing','Missing')],
         string='Status')
+    mrp_assigned_id = fields.Many2one('mrp.production','Manufacturing Order')
+    
 
 
     #@api.multi
@@ -57,3 +59,15 @@ class cask_cask(models.Model):
 
     def status2emptybutton(self):
         self.status2empty(False)
+
+    def status2full(self,product_id,description,withvalidation):
+        for cask in self:
+            move_values = {
+                'name':description,
+                'cask_id':cask.id,
+                'state':'full',
+                'product_id':product_id,
+                'customer_id':False,
+            }
+            self.env['cask.move'].sudo().create(move_values)
+

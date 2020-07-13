@@ -101,13 +101,12 @@
             <field name="model">cask.move</field>
             <field name="arch" type="xml">
                 <tree string="Cask Moves">
-                    <field name="create_date"/>
+                    <field name="create_date" string="Date"/>
                     <field name="name"/>
                     <field name="state"/>
-                    <field name="next_create_date"/>
                     <field name="cask_id"/>
                     <field name="product_id"/>
-                    <field name="cask_id"/>
+                    <field name="customer_id"/>
                 </tree>
             </field>
         </record>

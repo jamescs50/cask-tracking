@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window
+            id="act_view_mrp_cask_cask"
+            name="Casks"
+            view_mode='tree,form'
+            view_id='cask_cask_tree_view'
+            domain="[('mrp_assigned_id','=', active_id)]"
+            context="{'default_mrp_assigned_id': active_id}"
+            res_model="cask.cask"/>
+
+        <record model="ir.ui.view" id="mrp_production_form_cask">
+            <field name="name">mrp_procuction_form_cask_inherit</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" string="Casks" type="action" name="%(act_view_mrp_cask_cask)d"
+                        icon="fa-list-ul" widget="statinfo"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

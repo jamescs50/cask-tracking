@@ -30,11 +30,6 @@ class cask_move(models.Model):
     def _compute_next_create_date(self):
         self.flush()
         for cm in self:
-            #query = """select create_date from cask_move 
-            #    where cask_id = {0} and id > {1} 
-            #    order by id limit 1""".format(cm.cask_id.id,cm.id)
-            #self._cr.execute(query)
-            #cm.next_create_date = self._cr.fetchall()
             nextcm = self.env['cask.move'].search([('id','>',cm.id),
                 ('cask_id','=',cm.cask_id.id)],limit=1,order='id')
             cm.next_create_date = nextcm.create_date

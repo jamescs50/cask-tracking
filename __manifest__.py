@@ -5,7 +5,7 @@
     'website':'kodoo.co.uk',
     'license':'LGPL-3',
     'category':'Operations',
-    'depends':['base','product','stock'],
+    'depends':['base','product','stock','mrp'],
     'application':True,
     'installable': True,
     'data': [
@@ -13,6 +13,7 @@
         'security/ir.model.access.csv',
         'views/res_config_settings_views.xml',
         'views/cask_menu.xml',
-        'views/cask_masterdata_views.xml',
+        'views/cask_views.xml',
+        'views/mrp_views.xml',
     ],
 }
